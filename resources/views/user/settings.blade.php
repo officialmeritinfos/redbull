@@ -1,159 +1,169 @@
-@extends('user.base')
+@extends('layouts.dashboard')
+
+@section('title', $pageName ?? 'Settings')
 
 @section('content')
+    <div class="max-w-3xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- DataTales Example -->
-    <div class="card">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                {{$pageName}}
-            </h6>
+        {{-- Notifications --}}
+        @include('templates.notification')
+
+        {{-- Profile Settings --}}
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Profile Settings</h2>
+
+            <form method="POST" action="{{ route('settings.update') }}" class="space-y-4" x-data="{ loading: false, twoWay: '{{ $user->twoWay }}' }" @submit.prevent="loading = true; $el.submit()">
+                @csrf
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Name</label>
+                        <input type="text" name="name" value="{{ $user->name }}"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Email</label>
+                        <input type="email" value="{{ $user->email }}" disabled
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Username</label>
+                        <input type="text" value="{{ $user->username }}" disabled
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Reference</label>
+                        <input type="text" value="{{ $user->userRef }}" disabled
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Phone</label>
+                        <input type="text" name="phone" value="{{ $user->phone }}"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Date of Birth</label>
+                        <input type="date" name="dob" value="{{ $user->dateOfBirth }}"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Country</label>
+                        <input type="text" name="country" value="{{ $user->country }}"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    {{-- 2FA Radio Cards --}}
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Two-Factor Authentication</label>
+                        <div class="flex space-x-4">
+                            <label :class="{ 'ring-2 ring-blue-500 border-blue-500': twoWay == '1' }"
+                                   class="flex-1 cursor-pointer rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-sm font-medium text-gray-800 dark:text-white bg-white dark:bg-gray-800 transition duration-200 hover:border-blue-500"
+                                   @click="twoWay = '1'">
+                                <input type="radio" name="twoWay" value="1" class="hidden" x-model="twoWay">
+                                ON
+                            </label>
+
+                            <label :class="{ 'ring-2 ring-blue-500 border-blue-500': twoWay == '2' }"
+                                   class="flex-1 cursor-pointer rounded-lg border border-gray-300 dark:border-gray-600 px-4 py-3 text-center text-sm font-medium text-gray-800 dark:text-white bg-white dark:bg-gray-800 transition duration-200 hover:border-blue-500"
+                                   @click="twoWay = '2'">
+                                <input type="radio" name="twoWay" value="2" class="hidden" x-model="twoWay">
+                                OFF
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit"
+                            class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-6 py-2 rounded-md transition flex items-center justify-center"
+                            x-bind:disabled="loading">
+                        <svg x-show="loading" class="animate-spin h-4 w-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Updating...' : 'Update Profile'"></span>
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="card-body row">
-            <div class="col-md-12 mx-auto">
-                <form method="post" action="{{route('settings.update')}}" class="g-5">
-                    @csrf
-                    @include('templates.notification')
-                    <div class="row">
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Name"
-                                   value="{{$user->name}}" name="name">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder="Email"
-                                   value="{{$user->email}}" disabled>
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">Username</label>
-                            <input type="text" class="form-control" id="inputEmail4" placeholder="username"
-                                   value="{{$user->username}}" disabled>
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">Reference</label>
-                            <input type="email" class="form-control" id="inputEmail4" placeholder=""
-                                   value="{{$user->userRef}}" disabled>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputAddress2">Phone</label>
-                            <input type="text" class="form-control" id="inputAddress2"
-                                   placeholder="Enter your contact number" name="phone"
-                                   value="{{$user->phone}}">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputAddress2">Date of Birth</label>
-                            <input type="date" class="form-control" id="inputAddress2"
-                                   placeholder="Enter your contact number" name="dob"
-                                   value="{{$user->dateOfBirth}}">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputAddress2">Country</label>
-                            <input type="text" class="form-control" id="inputAddress2"
-                                   placeholder="Enter country" name="country" value="{{$user->country}}">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputAddress2">2FA</label>
-                            <select type="text" class="form-control" id="inputAddress2"
-                                   name="twoWay">
-                                <option value="">Select an Option</option>
-                                @if($user->twoWay == 1)
-                                    <option value="1" selected>ON</option>
-                                    <option value="2" >OFF</option>
-                                @else
-                                    <option value="1" >ON</option>
-                                    <option value="2" selected>OFF</option>
-                                @endif
-                            </select>
-                        </div>
-                    </div>
-                    <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
+
+        {{-- Profile Photo --}}
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Profile Photo</h2>
+
+            <form method="POST" action="{{ route('photo.update') }}" enctype="multipart/form-data" class="space-y-4" x-data="{ loading: false }" @submit.prevent="loading = true; $el.submit()">
+                @csrf
+
+                <div class="flex items-center space-x-4">
+                    <img src="{{ empty($user->photo)
+                        ? 'https://ui-avatars.com/api/?name=' . urlencode($user->name)
+                        : asset('dashboard/user/images/' . $user->photo) }}"
+                         alt="Profile Photo" class="w-16 h-16 rounded-full object-cover border border-gray-300 dark:border-gray-600">
+
+                    <input type="file" name="photo"
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-6 py-2 rounded-md transition flex items-center justify-center"
+                            x-bind:disabled="loading">
+                        <svg x-show="loading" class="animate-spin h-4 w-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Uploading...' : 'Update Photo'"></span>
+                    </button>
+                </div>
+            </form>
         </div>
+
+        {{-- Change Password --}}
+        <div class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 space-y-6">
+            <h2 class="text-lg font-semibold text-gray-800 dark:text-white">Change Password</h2>
+
+            <form method="POST" action="{{ route('password.update') }}" class="space-y-4" x-data="{ loading: false }" @submit.prevent="loading = true; $el.submit()">
+                @csrf
+
+                <div>
+                    <label class="text-sm text-gray-700 dark:text-gray-300">Old Password</label>
+                    <input type="password" name="old_password"
+                           class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">New Password</label>
+                        <input type="password" name="new_password"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-700 dark:text-gray-300">Repeat New Password</label>
+                        <input type="password" name="new_password_confirmation"
+                               class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition">
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-6 py-2 rounded-md transition flex items-center justify-center"
+                            x-bind:disabled="loading">
+                        <svg x-show="loading" class="animate-spin h-4 w-4 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Updating...' : 'Update Password'"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
     </div>
-
-
-
-    <!-- DataTales Example -->
-    <div class="card mt-5">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Photo Change
-            </h6>
-        </div>
-        <div class="card-body row">
-            <div class="col-md-12 mx-auto">
-                <form method="post" action="{{route('photo.update')}}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="row mt-3">
-                        <div class="form-group col-md-12 mt-3">
-                            <label for="inputEmail4">Current Photo</label>
-
-                            <div class="profile-face">
-                                <div class="row align-items-end justify-content-center">
-                                    <div class="col-lg-4">
-                                        <div class="avatar">
-                                            <img src="{{empty($user->photo)?'https://ui-avatars.com/api/?name='.$user->name:asset('dashboard/user/images/'.$user->photo)}}"
-                                                 alt="Images" style="width: 80px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="form-group col-md-12 mt-3">
-                            <label for="inputEmail4">Upload Profile Photo</label>
-                            <input type="file" class="form-control" id="inputEmail4"
-                            name="photo" accept="image/*"/>
-                        </div>
-                    </div>
-                    <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="card mt-5">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">
-                Password Change
-            </h6>
-        </div>
-        <div class="card-body row">
-            <div class="col-md-12 mx-auto">
-                <form method="post" action="{{route('password.update')}}">
-                    @csrf
-                    <div class="row mt-3">
-                        <div class="form-group col-md-12 mt-3">
-                            <label for="inputEmail4">Old Password</label>
-                            <input type="password" class="form-control" id="name" placeholder="Enter old password"
-                                   name="old_password">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">New Password</label>
-                            <input type="password" class="form-control" id="inputEmail4"
-                                   name="new_password" placeholder="Enter New Password">
-                        </div>
-                        <div class="form-group col-md-6 mt-3">
-                            <label for="inputEmail4">Repeat New Password</label>
-                            <input type="password" class="form-control" id="inputEmail4"
-                                   name="new_password_confirmation" placeholder="Repeat New Password">
-                        </div>
-
-                    </div>
-                    <div class="text-center mt-5">
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
 @endsection

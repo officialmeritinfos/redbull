@@ -30,7 +30,7 @@ class Investments extends Controller
             'web'=>$web,
             'user'=>$user,
             'investments'=>Investment::where('user',$user->id)->paginate(15),
-            'pageName'=>'Deposit Lists',
+            'pageName'=>'Investment History',
             'siteName'=>$web->name
         ];
 
@@ -45,7 +45,7 @@ class Investments extends Controller
         $dataView = [
             'web'=>$web,
             'user'=>$user,
-            'pageName'=>'New Deposit',
+            'pageName'=>'New Investment',
             'siteName'=>$web->name,
             'packages'=>Package::where('status',1)->get(),
             'coins'=>Coin::where('status',1)->get(),

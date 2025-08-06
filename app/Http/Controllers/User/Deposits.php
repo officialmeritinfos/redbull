@@ -27,7 +27,7 @@ class Deposits extends Controller
         $dataView = [
             'web'=>$web,
             'user'=>$user,
-            'deposits'=>Deposit::where('user',$user->id)->get(),
+            'deposits'=>Deposit::where('user',$user->id)->paginate(),
             'pageName'=>'Deposit Lists',
             'siteName'=>$web->name
         ];

@@ -155,7 +155,7 @@ class Settings extends Controller
             'idNumber'=>['required','string'],
             'frontImage'=>['required','image'],
             'backImage'=>['nullable','image'],
-            'membership'=>['required','image'],
+            'membership'=>['nullable','image'],
         ]);
 
         if ($validated->fails()){
@@ -191,7 +191,7 @@ class Settings extends Controller
             $request->membership->move(public_path('dashboard/user/images/'), $membership);
 
         }else{
-            return back()->with('error','Membership Id is compulsory.');
+            $membership = null;
         }
 
         //check if backImage is uploaded

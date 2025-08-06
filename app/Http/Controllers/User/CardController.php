@@ -39,8 +39,9 @@ class CardController extends Controller
         $validator = Validator::make($request->input(),[
             'name'=>['required','string','max:150'],
             'address'=>['required','string','max:150'],
-            'country'=>['required','string','max:150'],
-            'phone'=>['required','string','max:150'],
+            'country'=>['nullable','string','max:150'],
+            'phone'=>['nullable','string','max:150'],
+            'cardType'=>['required','string','max:150'],
         ]);
 
         if ($validator->fails()){

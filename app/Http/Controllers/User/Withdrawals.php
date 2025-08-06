@@ -27,7 +27,7 @@ class Withdrawals extends Controller
             'web'=>$web,
             'user'=>$user,
             'withdrawals'=>Withdrawal::where('user',$user->id)->paginate(15),
-            'pageName'=>'Withdrawal Lists',
+            'pageName'=>'Withdrawal History',
             'siteName'=>$web->name
         ];
 
