@@ -1,82 +1,82 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>{{$pageName}} - {{$siteName}}</title>
-    <style>
-        .gradient-custom {
-            /* fallback for old browsers */
-            background: #0437F2;
-            /* Chrome 10-25, Safari 5.1-6 */
-            /*background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));*/
-            /*!* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
-            /*background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))*/
-        }
-    </style>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+{{-- resources/views/auth/reset-password.blade.php --}}
+@extends('layouts.guest')
 
-</head>
-<body>
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+@section('title', $pageName . ' - ' . $siteName)
 
-                        <div class="mb-md-5 mt-md-4 pb-5">
-                            <h2 class="fw-bold mb-2 text-uppercase">{{$pageName}}</h2>
-                            <p class="text-white-50 mb-5">Fill the form below</p>
-                            <form method="post" action="{{route('resetPassword')}}">
-                                @include('templates.notification')
-                                @csrf
-                                <div class="row">
-                                    <div class="form-outline form-white mb-4 col-md-12">
-                                        <input type="text" id="typeEmailX" class="form-control form-control-lg"
-                                               name="email" value="{{$email}}" readonly/>
-                                        <label class="form-label" for="typeEmailX">Username</label>
-                                    </div>
-                                    <div class="form-outline form-white mb-4 col-md-12" style="display:none;">
-                                        <input type="text" id="typeEmailX" class="form-control form-control-lg"
-                                               name="code" value="{{$code}}"/>
-                                        <label class="form-label" for="typeEmailX">Email</label>
-                                    </div>
-                                    <div class="form-outline form-white mb-4 col-md-6">
-                                        <input type="password" id="typePasswordX" class="form-control form-control-lg"
-                                               name="password"/>
-                                        <label class="form-label" for="typePasswordX">Password</label>
-                                    </div>
-                                    <div class="form-outline form-white mb-4 col-md-6">
-                                        <input type="password" id="typePasswordX" class="form-control form-control-lg"
-                                               name="password_confirmation"/>
-                                        <label class="form-label" for="typePasswordX">Repeat Password</label>
-                                    </div>
-                                </div>
+@section('content')
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-12 px-4">
+        <div class="w-full max-w-md bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8"
+             x-data="{ loading: false, showPassword: false, showPasswordConfirm: false }">
 
-                                <button class="btn btn-outline-light btn-lg px-5"
-                                        type="submit">
-                                    Reset
-                                </button>
-                            </form>
-                        </div>
+            <!-- Header -->
+            <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-2">{{ $pageName }}</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">Fill the form below</p>
 
+            <!-- Notifications -->
+            @include('templates.notification')
 
+            <!-- Form -->
+            <form method="POST" action="{{ route('resetPassword') }}" class="space-y-5" @submit="loading = true">
+                @csrf
+
+                <!-- Email (read-only) -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+                    <input type="text" name="email" value="{{ $email }}" readonly
+                           class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                              bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300 cursor-not-allowed">
+                </div>
+
+                <!-- Hidden Code -->
+                <input type="hidden" name="code" value="{{ $code }}"/>
+
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                    <div class="relative">
+                        <input :type="showPassword ? 'text' : 'password'" name="password" placeholder="New password"
+                               class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="button"
+                                class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
+                                @click="showPassword = !showPassword" tabindex="-1">
+                            <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Optional JavaScript; choose one of the two! -->
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+                <!-- Confirm Password -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Repeat Password</label>
+                    <div class="relative">
+                        <input :type="showPasswordConfirm ? 'text' : 'password'" name="password_confirmation" placeholder="Repeat password"
+                               class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="button"
+                                class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
+                                @click="showPasswordConfirm = !showPasswordConfirm" tabindex="-1">
+                            <i :class="showPasswordConfirm ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                            :disabled="loading"
+                            class="w-full py-3 px-4 flex items-center justify-center bg-purple-600 hover:bg-purple-700
+                               text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg x-show="loading" class="animate-spin h-5 w-5 mr-2 text-white"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Processing...' : 'Reset'"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+@endsection

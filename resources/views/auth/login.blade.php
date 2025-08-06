@@ -1,143 +1,81 @@
-<!doctype html>
-<html lang="zxx">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('layouts.guest')
 
-    <!-- Bootstrap Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/bootstrap.min.css')}}">
-    <!-- Owl Theme Default Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/owl.theme.default.min.css')}}">
-    <!-- Owl Carousel Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/owl.carousel.min.css')}}">
-    <!-- Animate Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/animate.min.css')}}">
-    <!-- Remixicon CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/remixicon.css')}}">
-    <!-- boxicons CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/boxicons.min.css')}}">
-    <!-- MetisMenu Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/metismenu.min.css')}}">
-    <!-- Simplebar Min CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/simplebar.min.css')}}">
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/style.css')}}">
-    <!-- Dark Mode CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/dark-mode.css')}}">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/user/css/responsive.css')}}">
+@section('title', 'Sign-in your Account')
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{asset('home/images/'.$web->logo)}}">
-    <title>{{$pageName}} - {{$siteName}}</title>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</head>
+@section('content')
+    <!-- Start User Area -->
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-950 py-12 px-4">
+        <div class="w-full max-w-md bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8"
+             x-data="{ loading: false, showPassword: false }">
 
-<body class="body-bg-f5f5f5">
-<!-- Start Preloader Area -->
-<div class="preloader">
-    <div class="content">
-        <div class="box"></div>
-    </div>
-</div>
-<!-- End Preloader Area -->
+            <!-- Heading -->
+            <h3 class="text-2xl font-bold text-center text-gray-800 dark:text-white">Login</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">
+                Sign In to continue to {{ $siteName }}.
+            </p>
 
-<!-- Start User Area -->
-<section class="user-area">
-    <div class="container">
-        <div class="user-form-content">
-            <h3>Login</h3>
-            <p>Sign In to continue to {{$siteName}}.</p>
+            <!-- Notifications -->
+            @include('templates.notification')
 
-            <form class="user-form" method="post" action="{{route('auth.login')}}">
-                @include('templates.notification')
+            <!-- Form -->
+            <form method="POST" action="{{ route('auth.login') }}" class="space-y-5" @submit="loading = true">
                 @csrf
-                <div class="row">
 
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input class="form-control" type="text" placeholder="Enter your username"
-                                   name="email" value="{{old('email')}}"/>
-                        </div>
-                    </div>
+                <!-- Username -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
+                    <input type="text" name="email" value="{{ old('email') }}" placeholder="Enter your username"
+                           class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
+                              bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
 
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" type="password" name="password"
-                                   placeholder="Enter your password">
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="login-action">
-
-
-                            <span class="forgot-login">
-										<a href="{{route('forgotPassword')}}">Forgot your password?</a>
-									</span>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <button class="default-btn register" type="submit">
-                            Login
+                <!-- Password -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+                    <div class="relative">
+                        <input :type="showPassword ? 'text' : 'password'" name="password" placeholder="Enter your password"
+                               class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <button type="button"
+                                class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
+                                @click="showPassword = !showPassword" tabindex="-1">
+                            <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                         </button>
                     </div>
-
-
-
-                    <div class="col-12">
-                        <p class="create">Don’t have an account? <a href="{{route('register')}}">Sign up</a></p>
-                    </div>
                 </div>
+
+                <!-- Forgot Password -->
+                <div class="flex justify-end">
+                    <a href="{{ route('forgotPassword') }}"
+                       class="text-sm text-purple-600 hover:underline dark:text-purple-400">
+                        Forgot your password?
+                    </a>
+                </div>
+
+                <!-- Submit -->
+                <div>
+                    <button type="submit"
+                            :disabled="loading"
+                            class="w-full py-3 px-4 flex items-center justify-center bg-purple-600 hover:bg-purple-700
+                               text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg x-show="loading" class="animate-spin h-5 w-5 mr-2 text-white"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                  d="M4 12a8 8 0 018-8v8z"></path>
+                        </svg>
+                        <span x-text="loading ? 'Processing...' : 'Login'"></span>
+                    </button>
+                </div>
+
+                <!-- Sign Up Link -->
+                <p class="text-center text-sm text-gray-500 dark:text-gray-400">
+                    Don’t have an account?
+                    <a href="{{ route('register') }}" class="text-purple-600 hover:underline">Sign up</a>
+                </p>
             </form>
         </div>
-    </div>
-</section>
-<!-- End User Area -->
-
-<div class="dark-bar">
-    <a href="#" class="d-flex align-items-center">
-        <span class="dark-title">Enable Dark Theme</span>
-    </a>
-
-    <div class="form-check form-switch">
-        <input type="checkbox" class="checkbox" id="darkSwitch">
-    </div>
-</div>
-
-<!-- Start Go Top Area -->
-<div class="go-top">
-    <i class="ri-arrow-up-s-fill"></i>
-    <i class="ri-arrow-up-s-fill"></i>
-</div>
-<!-- End Go Top Area -->
-
-<!-- Jquery Min JS -->
-<script src="{{asset('dashboard/user/js/jquery.min.js')}}"></script>
-<!-- Bootstrap Bundle Min JS -->
-<script src="{{asset('dashboard/user/js/bootstrap.bundle.min.js')}}"></script>
-<!-- Owl Carousel Min JS -->
-<script src="{{asset('dashboard/user/js/owl.carousel.min.js')}}"></script>
-<!-- Metismenu Min JS -->
-<script src="{{asset('dashboard/user/js/metismenu.min.js')}}"></script>
-<!-- Simplebar Min JS -->
-<script src="{{asset('dashboard/user/js/simplebar.min.js')}}"></script>
-<!-- mixitup Min JS -->
-<script src="{{asset('dashboard/user/js/mixitup.min.js')}}"></script>
-<!-- Dark Mode Switch Min JS -->
-<script src="{{asset('dashboard/user/js/dark-mode-switch.min.js')}}"></script>
-<!-- Form Validator Min JS -->
-<script src="{{asset('dashboard/user/js/form-validator.min.js')}}"></script>
-<!-- Contact JS -->
-<script src="{{asset('dashboard/user/js/contact-form-script.js')}}"></script>
-<!-- Ajaxchimp Min JS -->
-<script src="{{asset('dashboard/user/js/ajaxchimp.min.js')}}"></script>
-<!-- Custom JS -->
-<script src="{{asset('dashboard/user/js/custom.js')}}"></script>
-</body>
-</html>
+    </section>
+    <!-- End User Area -->
+@endsection
