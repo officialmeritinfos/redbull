@@ -36,7 +36,7 @@
                     <div class="relative">
                         <input :type="showPassword ? 'text' : 'password'" name="password" placeholder="New password"
                                class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
-                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <button type="button"
                                 class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
                                 @click="showPassword = !showPassword" tabindex="-1">
@@ -51,7 +51,7 @@
                     <div class="relative">
                         <input :type="showPasswordConfirm ? 'text' : 'password'" name="password_confirmation" placeholder="Repeat password"
                                class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
-                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <button type="button"
                                 class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
                                 @click="showPasswordConfirm = !showPasswordConfirm" tabindex="-1">
@@ -64,7 +64,7 @@
                 <div>
                     <button type="submit"
                             :disabled="loading"
-                            class="w-full py-3 px-4 flex items-center justify-center bg-purple-600 hover:bg-purple-700
+                            class="w-full py-3 px-4 flex items-center justify-center bg-indigo-600 hover:bg-indigo-700
                                text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg x-show="loading" class="animate-spin h-5 w-5 mr-2 text-white"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

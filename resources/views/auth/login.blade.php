@@ -26,7 +26,7 @@
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Username</label>
                     <input type="text" name="email" value="{{ old('email') }}" placeholder="Enter your username"
                            class="mt-1 w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600
-                              bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                              bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
 
                 <!-- Password -->
@@ -35,7 +35,7 @@
                     <div class="relative">
                         <input :type="showPassword ? 'text' : 'password'" name="password" placeholder="Enter your password"
                                class="mt-1 w-full px-4 py-2 pr-10 rounded-lg border border-gray-300 dark:border-gray-600
-                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                  bg-white/50 dark:bg-gray-900/50 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <button type="button"
                                 class="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-400"
                                 @click="showPassword = !showPassword" tabindex="-1">
@@ -47,7 +47,7 @@
                 <!-- Forgot Password -->
                 <div class="flex justify-end">
                     <a href="{{ route('forgotPassword') }}"
-                       class="text-sm text-purple-600 hover:underline dark:text-purple-400">
+                       class="text-sm text-indigo-600 hover:underline dark:text-indigo-400">
                         Forgot your password?
                     </a>
                 </div>
@@ -56,7 +56,7 @@
                 <div>
                     <button type="submit"
                             :disabled="loading"
-                            class="w-full py-3 px-4 flex items-center justify-center bg-purple-600 hover:bg-purple-700
+                            class="w-full py-3 px-4 flex items-center justify-center bg-indigo-600 hover:bg-indigo-700
                                text-white font-semibold rounded-lg shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg x-show="loading" class="animate-spin h-5 w-5 mr-2 text-white"
                              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -72,7 +72,7 @@
                 <!-- Sign Up Link -->
                 <p class="text-center text-sm text-gray-500 dark:text-gray-400">
                     Don’t have an account?
-                    <a href="{{ route('register') }}" class="text-purple-600 hover:underline">Sign up</a>
+                    <a href="{{ route('register') }}" class="text-indigo-600 hover:underline">Sign up</a>
                 </p>
             </form>
         </div>
