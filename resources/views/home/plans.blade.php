@@ -162,12 +162,58 @@
                                             Unlimited
                                         @endif
                                     </li>
-                                    <li>Profit return: {{$package->roi}}% {{$option->getReturnType($package->returnType)}}</li>
-                                    <li>Contract Duration: {{$package->Duration}}</li>
-                                    <li>Referral Bonus: {{$package->referral}}% </li>
+                                    <li>24x7 Great Support</li>
+                                    <li>100% Safe & Secure</li>
+                                    <li>Maturity Period: {{$package->Duration}}</li>
+                                    <li> Compounding.</li>
+                                    <li>{{$package->comments}}</li>
                                 </ul>
                                 <div class="btn-area">
-                                    <a href="{{route('register')}}">Get Started</a>
+                                    <a href="{{route('register')}}">Invest Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">SERVICES</span>
+                <h1>CANNABIS PLANS</h1>
+                <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
+            </div>
+            <div class="row justify-content-center">
+                @foreach($cannabis_packages as $package)
+                    @inject('option','App\Defaults\Custom')
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-price">
+                            <div class="deal-top">
+                                <h3>{{$package->name}}</h3>
+                                <h4> {{$package->roi}}%/ <span
+                                        class="sup">{{$option->getReturnType($package->returnType)}}</span> </h4>
+                                <small class="text-white">{{$package->note}}</small>
+                            </div>
+                            <div class="deal-bottom">
+                                <ul class="deal-item">
+                                    <li>
+                                        Price: ${{number_format($package->minAmount,2)}} - @if($package->isUnlimited !=1)
+                                            ${{number_format($package->maxAmount,2)}}
+                                        @else
+                                            Unlimited
+                                        @endif
+                                    </li>
+                                    <li>24x7 Great Support</li>
+                                    <li>100% Safe & Secure</li>
+                                    <li>Maturity Period: {{$package->Duration}}</li>
+                                </ul>
+                                <div class="btn-area">
+                                    <a href="{{route('register')}}">Invest Now</a>
                                 </div>
                             </div>
                         </div>
