@@ -22,10 +22,6 @@ class HomeController extends Controller
     {
         $web = GeneralSetting::where('id',1)->first();
 
-        //check if the referral is stored
-        if (!Cache::has('referral')){
-            Cache::put('referral',$request->get('referral'),now()->addDays(7));
-        }
 
         $dataView = [
             'siteName'  => $web->name,
