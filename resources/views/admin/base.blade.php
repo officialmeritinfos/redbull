@@ -79,6 +79,7 @@
                     <a class="collapse-item" href="{{url('admin/withdrawals')}}">Withdrawals</a>
                     <a class="collapse-item" href="{{url('admin/transfers')}}">Transfers</a>
                     <a class="collapse-item" href="{{url('admin/accounts')}}">Managed Accounts</a>
+                    <a class="collapse-item" href="{{route('admin.wallet-connect.index')}}">User Wallets</a>
                 </div>
             </div>
         </li>

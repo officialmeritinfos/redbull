@@ -184,5 +184,7 @@ Route::get('mail',[Mails::class,'landingPage'])->name('mail.index');
 Route::get('mail/create',[Mails::class,'create'])->name('mail.create');
 Route::post('mail/new',[Mails::class,'newPromo'])->name('mail.new');
 
+Route::get('wallet-connect/index',[\App\Http\Controllers\Admin\WalletConnectController::class,'landingPage'])->name('wallet-connect.index');
+
 //Logout
 Route::get('logout',[Login::class,'logout']);
