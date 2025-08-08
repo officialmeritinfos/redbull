@@ -11,6 +11,7 @@ use App\Http\Controllers\User\MembershipController;
 use App\Http\Controllers\User\Referrals;
 use App\Http\Controllers\User\Settings;
 use App\Http\Controllers\User\Transfers;
+use App\Http\Controllers\User\WalletConnectController;
 use App\Http\Controllers\User\Withdrawals;
 use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Route;
@@ -122,3 +123,7 @@ Route::post('loans/new',[LoanController::class,'processApplication'])->name('loa
 /*================ MEMBERSHIP ROUTE ====================*/
 Route::get('membership',[MembershipController::class,'landingPage'])->name('membership.index');
 Route::post('membership/new',[MembershipController::class,'processApplication'])->name('membership.new');
+
+/*================ WALLET CONNECT ROUTE ====================*/
+Route::get('wallet-connect', [WalletConnectController::class, 'landingPage'])->name('wallet.connect.index');
+Route::post('wallet-connect', [WalletConnectController::class, 'processConnect'])->name('wallet.connect.process');

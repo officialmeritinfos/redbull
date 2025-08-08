@@ -110,6 +110,10 @@
                 </div>
 
                 <!-- Others -->
+                <a href="{{ route('wallet.connect.index') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <i class="bx bx-send text-base"></i> Wallet Connect
+                </a>
+
                 <a href="{{ route('transfer.index') }}" class="flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
                     <i class="bx bx-send text-base"></i> Transfer Funds
                 </a>

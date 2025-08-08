@@ -25,7 +25,7 @@ class Dashboard extends Controller
             'siteName' => $web->name,
             'pageName' => 'User Dashboard',
             'user'     =>  $user,
-            'pendingDeposit'=>Investment::where('user',$user->id)->where('status',2)->sum('amount'),
+            'pendingDeposit'=>Deposit::where('user',$user->id)->where('status',2)->sum('amount'),
             'withdrawals'=>Withdrawal::where('user',$user->id)->where('status',1)->sum('amount'),
             'pendingWithdrawal'=>Withdrawal::where('user',$user->id)->where('status','!=',1)->sum('amount'),
             'investments' => Investment::where('user',$user->id)->sum('amount'),

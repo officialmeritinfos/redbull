@@ -81,6 +81,11 @@
                 </div>
             </div>
 
+            <div class="col-lg-12 col-md-12 p-0">
+                <div class="about-img">
+                    <img src="{{asset('home/images/certificate.jpeg')}}" alt="image">
+                </div>
+            </div>
 
         </div>
     </div>
