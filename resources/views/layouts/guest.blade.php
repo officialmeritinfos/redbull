@@ -90,7 +90,7 @@
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
     var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '3e77a6f180185ac65622e2cdf8fe6f427d790ad2';
+    _smartsupp.key = '78548f253c22697cb509d3b75d33eae237fc1209';
     window.smartsupp||(function(d) {
         var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
         s=d.getElementsByTagName('script')[0];c=d.createElement('script');
