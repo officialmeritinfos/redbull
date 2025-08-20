@@ -21,6 +21,38 @@
 
     {{-- reCAPTCHA --}}
     <script src="https://www.google.com/recaptcha/api.js" defer></script>
+    <style>
+        .watkey {
+            z-index: 9;
+            position: fixed;
+            bottom: 15px;
+            left: 15px;
+            padding: 4px;
+            border: 1px solid #0d9f16;
+            border-radius: 50%;
+        }
+    </style>
+
+    <style>
+        /* Custom CSS for the Float widget */
+        .telegram-float-widget {
+            position: fixed;
+            left: 10px;
+            /* Adjust the left positioning as needed */
+            bottom: 20rem;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+
+        .whatsapp-float-widget {
+            position: fixed;
+            left: 70px;
+            /* Adjust the left positioning as needed */
+            bottom: 10px;
+            /* Adjust the bottom positioning as needed */
+            z-index: 9999;
+        }
+    </style>
 </head>
 
 <body x-data="themeToggle()" x-init="init()" :class="theme"
@@ -86,6 +118,15 @@
 </script>
 
 @stack('scripts')
+
+@if(setting('phone'))
+    <div class="telegram-float-widget">
+        <a href="https://wa.me/{{ setting('phone') }}" target="_blank">
+            <img src="https://cdn2.iconfinder.com/data/icons/social-media-applications/64/social_media_applications_23-whatsapp-256.png"
+                 alt="" width="50">
+        </a>
+    </div>
+@endif
 
 <!-- Smartsupp Live Chat script -->
 <script type="text/javascript">
