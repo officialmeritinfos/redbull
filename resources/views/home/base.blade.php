@@ -80,7 +80,7 @@
                                 <div class="d-flex align-items-center">
                                     <ul class="top-header-social-links d-flex align-items-center">
                                         <li>Follow us:</li>
-                                        <li><a href="https://x.com/peakinvestmentt" target="_blank"><i class="ri-twitter-fill"></i></a></li>
+                                        <li><a href="https://x.com/" target="_blank"><i class="ri-twitter-fill"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
