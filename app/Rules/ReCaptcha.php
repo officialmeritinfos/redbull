@@ -30,7 +30,7 @@ class ReCaptcha implements Rule
 
         $response = Http::get("https://www.google.com/recaptcha/api/siteverify",[
 
-            'secret' => config('app.recaptcha.site_key'),
+            'secret' => config('app.recaptcha.secret_key'),
 
             'response' => $value
 

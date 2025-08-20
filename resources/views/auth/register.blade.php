@@ -95,7 +95,7 @@
                 <!-- reCAPTCHA -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">ReCaptcha</label>
-                    <div class="mt-2 g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+                    <div class="mt-2 g-recaptcha" data-sitekey="{{ config('app.recaptcha.site_key') }}"></div>
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="text-red-500 text-sm">{{ $errors->first('g-recaptcha-response') }}</span>
                     @endif
