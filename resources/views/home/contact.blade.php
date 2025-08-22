@@ -32,14 +32,16 @@
                                 <li><a href="mailto:{{$web->email}}">{{$web->email}}</a></li>
                             </ul>
                         </div>
-                        
-                        <div class="branch-column_inner">
-                            <div class="branch-name"> (USA Office)</div>
-                            <ul class="branch-info_list">
-                                <li>{!! $web->address2 !!}
-                                </li>
-                            </ul>
-                        </div>
+
+                        @if($web->address2)
+                            <div class="branch-column_inner">
+                                <div class="branch-name"> (USA Office)</div>
+                                <ul class="branch-info_list">
+                                    <li>{!! $web->address2 !!}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
