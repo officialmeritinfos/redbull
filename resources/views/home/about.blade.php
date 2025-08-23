@@ -83,7 +83,7 @@
 
             <div class="col-lg-12 col-md-12 p-0">
                 <div class="about-img">
-                    <img src="{{asset('home/images/certificate.jpeg')}}" alt="image">
+                    <img src="{{asset('home/images/certificate.jpg')}}" alt="image">
                 </div>
             </div>
 
