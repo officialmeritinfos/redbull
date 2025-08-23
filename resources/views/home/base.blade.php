@@ -105,7 +105,7 @@
                 <div class="container">
                     <div class="enry-responsive-menu">
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 150px;" alt="logo"></a>
+                            <a href="{{ url('/') }}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 80px;" alt="logo"></a>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
             <div class="enry-nav">
                 <div class="container-fluid">
                     <nav class="navbar navbar-expand-md navbar-light">
-                        <a class="navbar-brand" href="{{ url(('/')) }}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 150px;" alt="logo"></a>
+                        <a class="navbar-brand" href="{{ url(('/')) }}"><img src="{{asset('home/images/'.$web->logo)}}" style="width: 80px;" alt="logo"></a>
 
                         <div class="collapse navbar-collapse mean-menu">
                             <ul class="navbar-nav">
@@ -203,7 +203,7 @@
                 <div class="col-lg-3 col-sm-6 col-md-6">
                     <div class="single-footer-widget">
                         <a href="{{url('/')}}" class="logo">
-                            <img src="{{asset('home/images/'.$web->logo)}}" alt="image">
+                            <img src="{{asset('home/images/'.$web->logo)}}" alt="image" style="width: 80px;">
                         </a>
                         <div class="footer-contact-info">
                             <h5>Contact:</h5>
