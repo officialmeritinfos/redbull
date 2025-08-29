@@ -224,7 +224,7 @@
                             <li><a href="{{url('contact')}}">Contact Us</a></li>
                             <li><a href="{{url('plans')}}">Plans</a></li>
                             <li><a href="{{url('faqs')}}">FAQs</a></li>
-                            <li><a href="{{ asset('ceritficate.pdf') }}" target="_blank">Our Certificate</a></li>
+                            <li><a href="{{ asset('home/images/certificate.jpg') }}" target="_blank">Our Certificate</a></li>
                         </ul>
                     </div>
                 </div>
