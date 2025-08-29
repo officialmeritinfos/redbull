@@ -84,38 +84,64 @@ box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px; wid
 
 
 
-    <!-- Start Services Area -->
-<div class="services-area pt-100">
-    <div class="container">
-        <div class="section-title">
-            <span class="sub-title">SERVICES</span>
-            <h2>Our Dedicated Services</h2>
-            <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
-        </div>
+    <!-- Start Video Area -->
+    <div class="services-area pt-100">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="sub-title">OUR VIDEO</span>
+                <h2>Watch Our Service Overview</h2>
+                <p>Learn more about what we offer and how you can benefit from our services.</p>
+            </div>
 
-        <div class="services-slides owl-carousel owl-theme">
-            @foreach($services as $service)
-            <div class="single-services-box">
-                <div class="image">
-                    <a href="{{route('service.details',['id'=>$service->id])}}">
-                        <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
-                    </a>
-                </div>
-                <div class="content">
-                    <h3><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
-                    <p>
-                        {{$service->short}}
-                    </p>
-                    <a href="{{route('service.details',['id'=>$service->id])}}" class="default-btn">Read More <i
-                            class="ri-arrow-right-line"></i></a>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Responsive video using Bootstrap ratio -->
+                    <div class="ratio ratio-16x9 shadow rounded">
+                        <video controls autoplay muted loop playsinline>
+                            <!-- Replace with your own video file -->
+                            <source src="{{ asset('about.mp4') }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
                 </div>
             </div>
-            @endforeach
-
         </div>
     </div>
-</div>
-<!-- End Services Area -->
+    <!-- End Video Area -->
+
+
+    <!-- Start Services Area -->
+    <div class="services-area pt-100">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">SERVICES</span>
+                <h2>Our Dedicated Services</h2>
+                <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
+            </div>
+
+            <div class="services-slides owl-carousel owl-theme">
+                @foreach($services as $service)
+                    <div class="single-services-box">
+                        <div class="image">
+                            <a href="{{route('service.details',['id'=>$service->id])}}">
+                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
+                            </a>
+                        </div>
+                        <div class="content">
+                            <h3><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
+                            <p>
+                                {{$service->short}}
+                            </p>
+                            <a href="{{route('service.details',['id'=>$service->id])}}" class="default-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></a>
+                        </div>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <!-- End Services Area -->
 
 <!-- Start About Area -->
 <div class="about-area ptb-100">
