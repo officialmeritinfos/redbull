@@ -1,0 +1,27 @@
+{
+  "name": "Red Bull Car Advertising Program",
+  "short_name": "Red Bull Cars",
+  "description": "Get paid $300 to display a Red Bull sticker on your car for one week!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#DC2626",
+  "theme_color": "#DC2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["business", "finance"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

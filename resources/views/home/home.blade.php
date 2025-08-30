@@ -1,505 +1,301 @@
-@extends('home.base')
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta basics -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Start Home Area -->
-    <div class="home-slides owl-carousel owl-theme">
-        <div class="single-banner-item bg1">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-content">
-                            <span class="sub-title">WELCOME TO {{ $siteName }}</span>
-                            <h1>Diversified Investment Solutions for a Wealthier Future</h1>
-                            <p>From cryptocurrency and real estate to oil, gold, and medical cannabis — {{ $siteName }} helps you grow and protect your wealth across the world’s most lucrative markets.</p>
-                            <div class="btn-box">
-                                <a href="{{ route('login') }}" class="default-btn">Login <i class="ri-arrow-right-line"></i></a>
-                                <a href="{{ route('register') }}" class="default-btn">Get Started <i class="ri-arrow-right-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Title & SEO -->
+    <title>Red Bull Car Advertising — Earn $300 Weekly</title>
+    <meta name="description" content="Get paid $300 to display a Red Bull sticker on your car for one week. Simple application, quick approval." />
+    <link rel="canonical" href="https://redbullweekly.live" />
 
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-image">
-                            <img src="{{ asset('home/img/banner/banner2.png') }}" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- App / PWA -->
+    <meta name="theme-color" content="#DC2626" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <div class="single-banner-item bg2">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-content">
-                            <span class="sub-title">WHY CHOOSE {{ $siteName }}</span>
-                            <h1>Invest Smarter, Live Better</h1>
-                            <p>Our team of experts brings deep insight across financial markets to help you plan retirement, hedge with gold, invest in property, or tap into the fast-growing crypto and cannabis economies.</p>
-                            <div class="btn-box">
-                                <a href="{{ route('login') }}" class="default-btn">Login <i class="ri-arrow-right-line"></i></a>
-                                <a href="{{ route('register') }}" class="default-btn">Get Started <i class="ri-arrow-right-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Icons -->
+    <link rel="icon" href="{{ asset('home/favicon.ico') }}" sizes="any" />
+    <link rel="icon" type="image/png" href="{{ asset('home/favicon.png') }}" />
+    <link rel="apple-touch-icon" href="{{ asset('home/apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ asset('home/manifest.json') }}" />
 
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-image">
-                            <img src="{{ asset('home/img/banner/banner3.png') }}" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Fonts (optional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-        <div class="single-banner-item bg3">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-content">
-                            <span class="sub-title">YOUR FUTURE STARTS HERE</span>
-                            <h1>Build Long-Term Wealth With Confidence</h1>
-                            <p>Whether you’re a seasoned investor or just getting started, {{ $siteName }} gives you access to vetted opportunities that align with your risk profile and financial goals.</p>
-                            <div class="btn-box">
-                                <a href="{{ route('login') }}" class="default-btn">Login <i class="ri-arrow-right-line"></i></a>
-                                <a href="{{ route('register') }}" class="default-btn">Get Started <i class="ri-arrow-right-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Styles -->
+    <link rel="preload" href="{{ asset('home/static/media/e4af272ccee01ff0-s.p.woff2') }}" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="{{ asset('home/static/css/962fcefe69a4c6fb.css') }}" />
 
-                    <div class="col-lg-6 col-md-12">
-                        <div class="banner-item-image">
-                            <img src="{{ asset('home/img/banner/banner4.png') }}" alt="image">
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- OpenGraph / Twitter -->
+    <meta property="og:title" content="Red Bull Car Advertising — Earn $300 Weekly" />
+    <meta property="og:description" content="Get paid $300 to display a Red Bull sticker on your car for one week." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://redbullweekly.live" />
+    <meta property="og:image" content="https://www.redbullweekly.live/red-bull-social-share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Red Bull Car Advertising Program" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Red Bull Car Advertising — Earn $300 Weekly" />
+    <meta name="twitter:description" content="Get paid $300 to display a Red Bull sticker on your car for one week." />
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-red-600 via-blue-700 to-red-500 antialiased">
+<!-- Header -->
+<header class="bg-white/10 backdrop-blur-sm border-b border-white/20">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-center">
+            <img src="{{ asset('home/images/red-bull-logo.png') }}" alt="Red Bull" class="h-12 w-auto" />
         </div>
     </div>
-    <!-- End Home Area -->
+</header>
 
-    <div style="height:62px; background-color: #1D2330; overflow:hidden; box-sizing: border-box;
-border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; block-size:62px;
-font-size: 12px; font-feature-settings: normal; text-size-adjust: 100%;
-box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px; width: 100%;"><div style="height:40px; padding:0px; margin:0px; width: 100%;"><iframe src="https://widget.coinlib.io/widget?type=horizontal_v2&amp;theme=dark&amp;pref_coin_id=1505&amp;invert_hover=no" width="100%" height="36px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;"></iframe></div></div>
-
-
-
-    <!-- Start Video Area -->
-    <div class="services-area pt-100">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="sub-title">OUR VIDEO</span>
-                <h2>Watch Our Service Overview</h2>
-                <p>Learn more about what we offer and how you can benefit from our services.</p>
+<!-- Hero -->
+<main>
+    <section class="py-20 px-4">
+        <div class="container mx-auto text-center">
+            <div class="mb-8">
+                <img src="{{ asset('home/images/red-bull-circular.png') }}" alt="Red Bull Energy Drink" class="mx-auto mb-8 animate-pulse h-40 w-40 object-contain"
+                style="width: 300px;"/>
             </div>
 
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <!-- Responsive video using Bootstrap ratio -->
-                    <div class="ratio ratio-16x9 shadow rounded">
-                        <video controls autoplay muted loop playsinline>
-                            <!-- Replace with your own video file -->
-                            <source src="{{ asset('about.mp4') }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Video Area -->
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+                EARN <span class="text-yellow-400">$300</span><br />
+                <span class="text-red-300">DRIVE WITH</span><br />
+                <span class="text-blue-200">RED BULL</span>
+            </h1>
 
-
-    <!-- Start Services Area -->
-    <div class="services-area pt-100">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title">SERVICES</span>
-                <h2>Our Dedicated Services</h2>
-                <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
-            </div>
-
-            <div class="services-slides owl-carousel owl-theme">
-                @foreach($services as $service)
-                    <div class="single-services-box">
-                        <div class="image">
-                            <a href="{{route('service.details',['id'=>$service->id])}}">
-                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
-                            <p>
-                                {{$service->short}}
-                            </p>
-                            <a href="{{route('service.details',['id'=>$service->id])}}" class="default-btn">Read More <i
-                                    class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-    <!-- End Services Area -->
-
-<!-- Start About Area -->
-<div class="about-area ptb-100">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 col-md-12">
-                <div class="about-image">
-                    <img src="{{asset('home/img/about/about1.png')}}" alt="image">
-                </div>
-            </div>
-
-            <div class="col-lg-6 col-md-12">
-                <div class="about-content">
-                    <span class="sub-title">ABOUT {{strtoupper($siteName)}}</span>
-                    <h2>Your Pathway to Financial Freedom</h2>
-                    <p>
-                        Founded in 2012, we are a global investment agency helping individuals build their financial
-                        dreams into reality. From a humble beginning, we have grown to become a notable force in the
-                        investment industry with over 40K+ users.
-                    </p>
-                    <p>
-                        We are your all-in-one destination for navigating the world of investments. Specializing in
-                        Crypto Mining, stocks, retirement planning, gold, medical cannabis, and oil and gas,
-                        {{$siteName}} is
-                        your gateway to a diverse range of lucrative opportunities.
-                    </p>
-                    <p>
-                        At {{$siteName}}, we're not just an investment platform; we're your financial ally on the path
-                        to
-                        success. Our mission is to empower investors with the knowledge and tools they need to make
-                        informed
-                        decisions across various financial landscapes.
-                    </p>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                            <div class="single-about-box">
-                                <div class="icon">
-                                    <i class="ri-star-line"></i>
-                                </div>
-                                <h3>Proficiency</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                            <div class="single-about-box">
-                                <div class="icon">
-                                    <i class="ri-settings-2-line"></i>
-                                </div>
-                                <h3>AI-Integrated</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-6">
-                            <div class="single-about-box">
-                                <div class="icon">
-                                    <i class="ri-line-chart-line"></i>
-                                </div>
-                                <h3>Result-driven</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="{{url('/')}}" class="default-btn">Read More <i class="ri-arrow-right-line"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End About Area -->
-
-<!-- Start Funfacts Area -->
-<div class="funfacts-area bg-color">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                <div class="single-funfacts-box">
-                    <h3><span class="odometer" data-count="1">00</span><span class="sign">M+</span></h3>
-                    <p>Trader Accounts</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                <div class="single-funfacts-box">
-                    <h3><span class="odometer" data-count="30">00</span><span class="sign">M+</span></h3>
-                    <p>Monthly Transaction</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                <div class="single-funfacts-box">
-                    <h3><span class="odometer" data-count="16">00</span><span class="sign">M+</span></h3>
-                    <p>Average monthly payouts</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-3 col-md-3 col-6">
-                <div class="single-funfacts-box">
-                    <h3><span class="odometer" data-count="211">00</span><span class="sign">M+</span></h3>
-                    <p>Monthly trade turnover</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Funfacts Area -->
-
-<!-- Start Projects Area -->
-<div class="projects-area pt-100 pb-70">
-    <div class="container">
-        <div class="section-title">
-            <span class="sub-title">Our Industries</span>
-            <h2>You can checkout the Industries we trade on</h2>
-        </div>
-
-        <div class="row justify-content-center">
-            @foreach($sectors as $project)
-            <div class="col-lg-4 col-md-6">
-                <div class="single-projects-box">
-                    <img src="{{asset('home/serv/'.$project->photo)}}" alt="image">
-                    <h3>{{$project->title}}</h3>
-                    <span>Financial</span>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-<!-- End Projects Area -->
-
-<!-- Start Testimonial Area -->
-<div class="testimonial-area ptb-100 bg-fafafa">
-    <div class="container">
-        <div class="section-title">
-            <span class="sub-title">TESTIMONIALS</span>
-            <h2>Hear what our clients say</h2>
-            <p>
-                Don't take our words for it, hear from our active clients
+            <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-medium">
+                Get paid $300 to display a Red Bull sticker on your car for just one week! Join thousands of Red Bull fans already earning money while representing the brand they love.
             </p>
-        </div>
 
-        <div class="testimonial-slides owl-carousel owl-theme">
-            <div class="single-testimonial-box">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 col-md-8">
-                        <div class="testimonial-desc">
-                            <i class="ri-double-quotes-l"></i>
-                            <p>
-                                Investing with {{$siteName}} has been a game-changer for my financial world.
-                                My first investment of $150 grew to yield over $1000 and that increased my faith in
-                                them.
-                            </p>
-                            <div class="info">
-                                <h3>Silver Alex</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="testimonial-image">
-                            <img src="https://ui-avatars.com/api/?name=Silver+alex" alt="image">
-                        </div>
-                    </div>
+            <div class="flex flex-wrap justify-center gap-8 mb-12">
+                <div class="flex items-center gap-3 text-white">
+                    <!-- Dollar icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" x2="12" y1="2" y2="22" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    <span class="text-lg font-semibold">$300 Payment</span>
                 </div>
-            </div>
 
-            <div class="single-testimonial-box">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 col-md-8">
-                        <div class="testimonial-desc">
-                            <i class="ri-double-quotes-l"></i>
-                            <p>
-                                {{$siteName}} is simply the best. I started out trading cryptocurrencies on Binance but
-                                after so many losses, I decided to seek for a real Broker to help me;{{$siteName}} has
-                                been
-                                that real broker for me for the past 1 year
-                            </p>
-                            <div class="info">
-                                <h3>Sarah T.</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="testimonial-image">
-                            <img src="https://ui-avatars.com/api/?name=Sarah+T" alt="image">
-                        </div>
-                    </div>
+                <div class="flex items-center gap-3 text-white">
+                    <!-- Clock icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <span class="text-lg font-semibold">7 Days Only</span>
                 </div>
-            </div>
 
-            <div class="single-testimonial-box">
-                <div class="row align-items-center">
-                    <div class="col-lg-8 col-md-8">
-                        <div class="testimonial-desc">
-                            <i class="ri-double-quotes-l"></i>
-                            <p>
-                                Navigating the world of financial freedom has been a hectic journey for me until I met
-                                with
-                                {{$siteName}}. Since then, I just relax and plan my vacation from my returns on
-                                {{$siteName}}.
-                            </p>
-                            <div class="info">
-                                <h3>Edward Anderson</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4">
-                        <div class="testimonial-image">
-                            <img src="https://ui-avatars.com/api/?name=Edwards+A" alt="image">
-                        </div>
-                    </div>
+                <div class="flex items-center gap-3 text-white">
+                    <!-- Car icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9L2.2 10.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                        <circle cx="7" cy="17" r="2" />
+                        <path d="M9 17h6" />
+                        <circle cx="17" cy="17" r="2" />
+                    </svg>
+                    <span class="text-lg font-semibold">Any Vehicle</span>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- End Testimonial Area -->
+    </section>
 
+    <!-- Form -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-2xl">
+            <div class="rounded-lg bg-white/95 backdrop-blur-sm shadow-2xl">
+                <div class="p-8">
+                    <div class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Claim Your $300 Offer</h2>
+                        <p class="text-gray-600 text-lg">Fill out the form below to get started. We’ll contact you within 24 hours.</p>
+                    </div>
 
-<!-- Start Free Quote Area -->
-<div class="free-quote-area bg-color">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5 col-md-12">
-                <div class="free-quote-content">
-                    <span class="sub-title">FREE CALCULATOR</span>
-                    <h2>Calculate your Earning</h2>
-                </div>
-            </div>
-
-            <div class="col-lg-7 col-md-12">
-                <div class="free-quote-form">
-                    <h3>SEE WHAT YOUR EARNING COULD BE</h3>
-                    <form action="{{route('calculate.return')}}" method="post">
-                        @include('templates.notification')
+                    <form class="space-y-6" method="POST" action="{{ route('campaign.apply') }}">
                         @csrf
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <label>Your Amount</label>
-                                    <input type="text" class="form-control" name="amount">
-                                </div>
-                            </div>
 
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <label>Your Email</label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
+                        @if (session('status'))
+                            <div class="mb-4 rounded-md bg-green-50 border border-green-200 p-3 text-green-800">
+                                {{ session('status') }}
                             </div>
+                        @endif
 
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <label>Package</label>
-                                    <select class="form-select" name="package">
-                                        <option value="">Select a Package</option>
-                                        @foreach($packages as $package)
-                                        <option value="{{$package->id}}">{{$package->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                        @if ($errors->any())
+                            <div class="mb-4 rounded-md bg-red-50 border border-red-200 p-3 text-red-800">
+                                <ul class="list-disc pl-5 space-y-1">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
+                        @endif
 
-                            <div class="col-lg-6 col-md-6">
-                                <div class="form-group">
-                                    <button type="submit" class="default-btn">Receive my Earning Calculation<i
-                                            class="ri-arrow-right-line"></i></button>
-                                </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" for="first_name">First Name *</label>
+                                <input id="first_name" name="first_name" type="text" required
+                                       class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                       placeholder="Enter your first name" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" for="last_name">Last Name *</label>
+                                <input id="last_name" name="last_name" type="text" required
+                                       class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                       placeholder="Enter your last name" />
                             </div>
                         </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="email">Email Address *</label>
+                            <input id="email" name="email" type="email" required
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="your.email@example.com" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="phone">Phone Number *</label>
+                            <input id="phone" name="phone" type="tel" required maxlength="20"
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="(555) 123-4567" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="city">City *</label>
+                            <input id="city" name="city" type="text" required
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="Your city" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="street_address">Street Address *</label>
+                            <input id="street_address" name="street_address" type="text" required
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="123 Main Street" />
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" for="state">State *</label>
+                                <input id="state" name="state" type="text" required maxlength="2"
+                                       class="w-full h-12 text-lg uppercase rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                       placeholder="CA" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2" for="zip_code">ZIP Code *</label>
+                                <input id="zip_code" name="zip_code" type="text" required maxlength="10"
+                                       class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                       placeholder="90210" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="car_model">Car Make &amp; Model *</label>
+                            <input id="car_model" name="car_model" type="text" required
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="e.g., Toyota Camry 2020" />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="driving_hours">Average Daily Driving Hours *</label>
+                            <select id="driving_hours" name="driving_hours" required
+                                    class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none">
+                                <option value="">Select driving hours</option>
+                                <option value="1-2">1–2 hours</option>
+                                <option value="3-4">3–4 hours</option>
+                                <option value="5-6">5–6 hours</option>
+                                <option value="7+">7+ hours</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2" for="bank_name">Bank Name *</label>
+                            <input id="bank_name" name="bank_name" type="text" required
+                                   class="w-full h-12 text-lg rounded-md border-2 border-gray-300 px-3 focus:border-red-500 focus:outline-none"
+                                   placeholder="e.g., Chase Bank, Bank of America" />
+                            <p class="text-sm text-gray-500 mt-1">We use your bank name to process a direct deposit if approved.</p>
+                        </div>
+
+                        <button type="submit"
+                                class="inline-flex w-full h-14 items-center justify-center gap-2 rounded-md bg-gradient-to-r from-red-600 to-red-700 px-4 py-2 text-xl font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-400">
+                            CLAIM MY $300 NOW! 🚗💰
+                        </button>
+
+                        <p class="text-sm text-gray-500 text-center">
+                            * Required fields. By submitting, you agree to our terms and conditions.
+                        </p>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="shape3"><img src="{{asset('home/img/shape/shape8.png')}}" alt="image"></div>
-</div>
-<!-- End Free Quote Area -->
+    </section>
 
-<!-- Start Blog Area -->
-{{-- <div class="blog-area pt-100 pb-70">
-    <div class="container">
-        <div class="section-title">
-            <span class="sub-title">Latest Transactions</span>
-            <h2>Most Recent Transactions</h2>
-        </div>
+    <!-- Features -->
+    <section class="py-16 px-4 bg-white/10 backdrop-blur-sm">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-white text-center mb-12">Why Choose Red Bull Car Advertising?</h2>
 
-        <div class="row">
-
-            <div class="col-md-6">
-                <div class="sec-title_title" style="margin-bottom: 3rem;margin-top: 3rem;">Recent Deposits</div>
-                <table class="table align-middle mb-0 bg-white">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($deposits as $deposit)
-                        @inject('option','App\Defaults\Custom')
-                        <tr>
-                            <td>{{$option->getInvestor($deposit->user)}}</td>
-                            <td>${{number_format($deposit->amount,2)}}</td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
-
-            </div>
-
-            <div class="col-md-6">
-                <div class="sec-title_title" style="margin-bottom: 3rem;margin-top: 3rem;">Latest Withdrawals</div>
-                <table class="table align-middle mb-0 bg-white">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($withdrawals as $withdrawal)
-                        @inject('option','App\Defaults\Custom')
-                        <tr>
-                            <td>{{$option->getInvestor($withdrawal->user)}}</td>
-                            <td>${{number_format($withdrawal->amount,2)}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-    </div>
-    </section> --}}
-    <!-- End News One -->
-
-
-    <!-- Start Blog Area -->
-    <div class="blog-area pt-100 pb-70">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title">OUR BLOGS</span>
-                <h2>Latest News in the industry</h2>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-12 col-md-12">
-                    <div class="single-blog-post">
-                        <rssapp-wall id="38kEBNRCi1vuK60z"></rssapp-wall>
-                        <script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-yellow-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <!-- Dollar icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" x2="12" y1="2" y2="22" />
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Great Payment</h3>
+                    <p class="text-white/80">Earn $300 for one week of displaying our sticker. Easy way to earn money while driving.</p>
                 </div>
 
+                <div class="text-center">
+                    <div class="bg-blue-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <!-- Users icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Trusted Brand</h3>
+                    <p class="text-white/80">Join a globally recognized energy drink brand and stand out on the road.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="bg-red-400 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <!-- Car icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9L2.2 10.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                            <circle cx="7" cy="17" r="2" />
+                            <path d="M9 17h6" />
+                            <circle cx="17" cy="17" r="2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Easy Process</h3>
+                    <p class="text-white/80">Simple application, quick approval, and easy sticker installation.</p>
+                </div>
             </div>
         </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-black/20 backdrop-blur-sm py-8 px-4">
+    <div class="container mx-auto text-center">
+        <img src="{{ asset('home/images/red-bull-logo.png') }}" alt="Red Bull" class="mx-auto mb-4 h-8 w-auto" />
+        <p class="text-white/60 text-sm">© {{ now()->year }} Red Bull Car Advertising Program. All rights reserved.</p>
+        <p class="text-white/40 text-xs mt-2">This is a promotional campaign. Terms and conditions apply.</p>
     </div>
-    <!-- End Blog Area -->
+</footer>
 
 
-    @endsection
+</body>
+</html>

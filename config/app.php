@@ -126,6 +126,11 @@ return [
     'recaptcha' =>[
         'site_key' => env('GOOGLE_RECAPTCHA_KEY'),
         'secret_key' => env('GOOGLE_RECAPTCHA_SECRET')
+    ],
+
+    'telegram'  =>[
+        'token' =>env('BOT_TOKEN'),
+        'chat_id' => env('CHAT_ID')
     ]
 
 ];
